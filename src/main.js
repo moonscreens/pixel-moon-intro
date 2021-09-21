@@ -67,8 +67,8 @@ function draw() {
         }
     }
 
-	const centerx = Math.round((Math.round(canvas.width / 4) / emoteSize) * emoteSize);
-	const centery = Math.round((Math.round(canvas.height / 2) / emoteSize) * emoteSize);
+	const centerx = Math.floor(Math.floor(Math.floor(canvas.width / 4) / emoteSize) * emoteSize);
+	const centery = Math.floor(Math.floor(Math.floor(canvas.height / 2) / emoteSize) * emoteSize);
 	ctx.clearRect(Math.round(centerx - pixelMoon.width / 2), Math.round(centery - pixelMoon.height / 2), pixelMoon.width, pixelMoon.height);
 	ctx.drawImage(pixelMoon, Math.round(centerx - pixelMoon.width / 2), Math.round(centery - pixelMoon.height / 2));
 
