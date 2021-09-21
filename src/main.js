@@ -23,7 +23,8 @@ const emoteSize = 32;
 // create our chat instance
 const ChatInstance = new Chat({
     channels,
-    duplicateEmoteLimit: 5,
+	maximumEmoteLimit: 4,
+    duplicateEmoteLimit: 0,
 })
 
 const canvas = document.createElement('canvas');
