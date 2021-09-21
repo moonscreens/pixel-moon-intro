@@ -67,10 +67,10 @@ function draw() {
         }
     }
 
-	const centerx = Math.round(canvas.width / 2);
-	const centery = Math.round(canvas.height / 2);
-	//ctx.clearRect(centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2, pixelMoon.width, pixelMoon.height);
-	ctx.drawImage(pixelMoon, centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2);
+	const centerx = Math.round((Math.round(canvas.width / 4) / emoteSize) * emoteSize);
+	const centery = Math.round((Math.round(canvas.height / 2) / emoteSize) * emoteSize);
+	ctx.clearRect(Math.round(centerx - pixelMoon.width / 2), Math.round(centery - pixelMoon.height / 2), pixelMoon.width, pixelMoon.height);
+	ctx.drawImage(pixelMoon, Math.round(centerx - pixelMoon.width / 2), Math.round(centery - pixelMoon.height / 2));
 
 
     lastFrame = Date.now();
@@ -81,8 +81,8 @@ const emoteArray = [];
 ChatInstance.on("emotes", (emotes) => {
     emoteArray.push({
         emotes,
-        x: Math.floor(Math.random() * (canvas.width / emoteSize)) * emoteSize,
-        y: Math.floor(Math.random() * (canvas.height / emoteSize)) * emoteSize,
+        x: Math.floor(Math.floor(Math.floor(Math.random() * canvas.width) / emoteSize) * emoteSize),
+        y: Math.floor(Math.floor(Math.floor(Math.random() * canvas.height) / emoteSize) * emoteSize),
         spawn: Date.now()
     });
 })
