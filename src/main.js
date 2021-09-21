@@ -53,7 +53,7 @@ function spawnStar() {
 		spawnDate: Date.now(),
 		timeOffset: Math.random() * 10000,
 		life: Math.random() * 30000,
-		shimmerSpeed: Math.random() * 100 + 100,
+		shimmerSpeed: Math.random() * 1000 + 100,
 	};
 	stars.push(star);
 }
