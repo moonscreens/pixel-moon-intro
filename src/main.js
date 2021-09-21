@@ -1,6 +1,10 @@
 import './main.css';
 import Chat from 'twitch-chat-emotes';
 
+import pixelMoonSrc from './pixel-moon.png';
+const pixelMoon = new Image();
+pixelMoon.src = pixelMoonSrc;
+
 // a default array of twitch channels to join
 let channels = ['moonmoon'];
 
@@ -12,6 +16,9 @@ const query_parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, func
 if (query_vars.channels) {
     channels = query_vars.channels.split(',');
 }
+
+const pixelRatio = 3;
+const emoteSize = 32;
 
 // create our chat instance
 const ChatInstance = new Chat({
@@ -25,8 +32,8 @@ const ctx = canvas.getContext('2d');
 
 
 function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth / pixelRatio;
+    canvas.height = window.innerHeight / pixelRatio;
 }
 resize();
 window.addEventListener('resize', resize);
@@ -50,8 +57,8 @@ function draw() {
 
         for (let i = 0; i < emoteGroup.emotes.length; i++) {
             const emote = emoteGroup.emotes[i];
-            ctx.drawImage(emote.gif.canvas, xOffset + emoteGroup.x, emoteGroup.y);
-            xOffset = emote.gif.canvas.width;
+            ctx.drawImage(emote.gif.canvas, xOffset + emoteGroup.x, emoteGroup.y, emoteSize, emoteSize);
+            xOffset += emoteSize;
         }
 
         // Delete a group after 10 seconds
@@ -59,6 +66,12 @@ function draw() {
             emoteArray.splice(o, 1);
         }
     }
+
+	const centerx = Math.round(canvas.width / 2);
+	const centery = Math.round(canvas.height / 2);
+	ctx.clearRect(centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2, pixelMoon.width, pixelMoon.height);
+	ctx.drawImage(pixelMoon, centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2);
+
 
     lastFrame = Date.now();
 }
@@ -68,8 +81,8 @@ const emoteArray = [];
 ChatInstance.on("emotes", (emotes) => {
     emoteArray.push({
         emotes,
-        x: Math.floor(Math.random() * canvas.width),
-        y: Math.floor(Math.random() * canvas.height),
+        x: Math.floor(Math.random() * (canvas.width / emoteSize)) * emoteSize,
+        y: Math.floor(Math.random() * (canvas.height / emoteSize)) * emoteSize,
         spawn: Date.now()
     });
 })
