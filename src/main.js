@@ -69,7 +69,7 @@ function draw() {
 
 	const centerx = Math.round(canvas.width / 2);
 	const centery = Math.round(canvas.height / 2);
-	ctx.clearRect(centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2, pixelMoon.width, pixelMoon.height);
+	//ctx.clearRect(centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2, pixelMoon.width, pixelMoon.height);
 	ctx.drawImage(pixelMoon, centerx - pixelMoon.width / 2, centery - pixelMoon.height / 2);
 
 
