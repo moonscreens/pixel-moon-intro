@@ -101,8 +101,8 @@ function draw() {
 			xOffset += emoteSize;
 		}
 
-		// Delete a group after 10 seconds
-		if (emoteGroup.spawn < Date.now() - 10000) {
+		// Delete a group after 5 seconds
+		if (emoteGroup.spawn < Date.now() - 5000) {
 			emoteArray.splice(o, 1);
 		}
 	}
